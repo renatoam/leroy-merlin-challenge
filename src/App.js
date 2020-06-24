@@ -1,10 +1,10 @@
 import React from 'react'
-import logo from './images/logo.svg'
+// import logo from './images/logo.svg'
+// import cart from './images/cart.svg'
 
 const App = () => (
   <>
-    <img className="logo" src={logo} width={150} height={150} data-testid="logo" />
-    <marquee data-testid="marquee">Leroy Merlin Brasil - Front-end Test</marquee>
+    <h1>Leroy Merlin - Teste</h1>
   </>
 )
 

@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a[class] {
+  text-decoration: none;
+}
+
+button[class] {
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
+}
+
+ul[class], ol[class] {
+  list-style: none;
+}

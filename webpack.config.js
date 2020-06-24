@@ -34,10 +34,29 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: process.env.NODE_ENV === 'development'
             }
           },
-          'css-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development'
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -48,7 +67,7 @@ module.exports = {
             name: '[name].[ext]',
             outputPath: 'images'
           }
-        }],
+        }]
 
       }
     ]
@@ -56,7 +75,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new StyleLintPlugin({
-      files: './src/styles/**/*.css'
+      files: ['./src/styles/**/*.css', './src/styles/**/*.scss']
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
@@ -68,6 +87,6 @@ module.exports = {
       filename: './index.html'
     })
   ]
-};
+}
 
 // candidate-renato-melo
