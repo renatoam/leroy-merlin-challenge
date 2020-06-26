@@ -2,11 +2,8 @@
 @import './reset';
 
 html {
-  font-size: 12px;
-
-  @media screen and (min-width: 55rem) {
-   font-size: 14px;
-  }
+  font-size: 14px;
+  font-family: sans-serif;
 }
 
 body {
@@ -15,9 +12,23 @@ body {
 
 // MOBILE FIRST
 
+.leroy {
+  &__wrapper {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    padding: 30px 11px;
+
+    @media screen and (min-width: 55rem) {
+      max-width: 880px;
+      margin: auto;
+    }
+  }
+}
+
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 100%;
   height: 109px;
@@ -28,37 +39,187 @@ body {
     background-color: $ice;
     border-bottom: 2px solid $green;
   }
-
+  
   h2 {
-    font-size: 2rem;
-
+    color: $white;
+    font-size: 1.714rem;
+    
     @media screen and (min-width: 55rem) {
-     display: none;
+      display: none;
     }
   }
-
+  
   &__column {
-    width: 50%;
     cursor: pointer;
-
+    
     img {
       width: 100%;
     }
-
+    
     &--logo {
-      max-width: 100px;
-    }
-
-    &--icon {
-      max-width: 50px;
-
-      path, polygon, rect {
-        fill: $white;
-
+      @media screen and (min-width: 55rem) {
+        max-width: 100px;
+      }
+      
+      img {
+        display: none;
+        
         @media screen and (min-width: 55rem) {
-         fill: $darkgrey;
+          display: block;
         }
       }
     }
+    
+    &--icon {
+      width: 25px;
+      height: 25px;
+      
+      path, polygon, rect {
+        fill: $white;
+        
+        @media screen and (min-width: 55rem) {
+          fill: $darkgrey;
+        }
+      }
+    }
+  }
+}
+
+.product {
+  display: block;
+  width: 172px;
+  max-height: 381px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  background-color: #FFF;
+  border: 1px solid #E5E5E5;
+  border-bottom: 5px solid #78BE20;
+
+  &.promo {
+    border-bottom: none;
+
+    .product__price {
+      height: 71px;
+      background-color: $darkyellow;
+    }
+
+    .product__promo {
+      display: block;
+    }
+
+    .product__current {
+      color: #666666;
+      font-size: 12px;
+      text-decoration: line-through;
+
+      .unit {
+        display: none;
+      }
+    }
+  }
+  
+  &__wrapper {
+    width: 100%;
+  }
+  
+  &__image {
+    position: relative;
+    width: 100%;
+  }
+  
+  &__tag {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 109px;
+    height: 25px;
+    padding: 4px 10px;
+    color: $white;
+    background-color: $green;
+  }
+  
+  &__offer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    padding: 6px 10px;
+    background-color: $red2;
+    
+    small {
+      color: $darkyellow;
+      font-size: 1rem;
+      
+      &:last-child {
+        font-size: 18px;
+      }
+    }
+  }
+  
+  &__name {
+    padding: 13px 10px;
+    color: #333333;
+    line-height: 17px;
+  }
+  
+  &__button {
+    display: block;
+    width: 162px;
+    height: 35px;
+    margin: 11px auto 15px;
+    color: #FFFFFF;
+    background-color: #78BE20;
+    -webkit-border-radius: 17.5px;
+    -moz-border-radius: 17.5px;
+    -ms-border-radius: 17.5px;
+    -o-border-radius: 17.5px;
+    border-radius: 17.5px;
+    -webkit-transition: background-color 0.4s ease-in-out;
+    -moz-transition: background-color 0.4s ease-in-out;
+    -ms-transition: background-color 0.4s ease-in-out;
+    -o-transition: background-color 0.4s ease-in-out;
+    transition: background-color 0.4s ease-in-out;
+    
+    &:hover {
+      background-color: darken($color: #78BE20, $amount: 5);
+    }
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 66px;
+    padding: 10px;
+  }
+
+  &__current {
+    color: $black;
+    font-weight: bold;
+    font-size: 20px;
+
+    small {
+      font-size: 1rem;
+    }
+  }
+
+  &__promo {
+    display: none;
+    color: $red2;
+    font-weight: bold;
+    font-size: 18px;
+    
+    .unit {
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+
+  &__installment {
+    color: #666666;
+    font-size: 12px;
   }
 }

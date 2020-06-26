@@ -5,6 +5,7 @@
 }
 
 a[class] {
+  color: initial;
   text-decoration: none;
 }
 
@@ -16,4 +17,8 @@ button[class] {
 
 ul[class], ol[class] {
   list-style: none;
+}
+
+figure > img {
+  width: 100%;
 }

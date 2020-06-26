@@ -40,7 +40,7 @@ const App = () => (
             </div>
           </section>
         </a>
-        <a href="{product.url}" className="product" data-id="{product.id}">
+        <a href="{product.url}" className="product promo" data-id="{product.id}">
           <section className="product__wrapper">
             <figure className="product__image">
               <img src={product} alt="Nome do produto"/>
