@@ -2,6 +2,7 @@
 import React from 'react'
 import logo from './images/logo.svg'
 import product from './images/product-placeholder.png'
+import search from './images/search.svg'
 
 const App = () => (
   <>
@@ -19,8 +20,12 @@ const App = () => (
             <path d="m163.3 294c-22.9 0-41.6-18.6-41.6-41.6 0-22.9 18.6-41.6 41.6-41.6 22.9 0 41.6 18.6 41.6 41.6s-18.7 41.6-41.6 41.6zm0-65.1c-13 0-23.6 10.6-23.6 23.6s10.6 23.6 23.6 23.6 23.6-10.6 23.6-23.6-10.6-23.6-23.6-23.6z"/>
             <polygon points="254.7 61.4 238.1 54.5 258.2 6 300 6 300 24 270.2 24"/>
           </svg>
-          <span className="qty"></span>
+          <span className="qty">2</span>
         </figure>
+        <div className="header__messages">
+          <p>Produto adicionado ao carrinho com sucesso!</p>
+          <span id="closeMessage">X</span>
+        </div>
       </header>
 
       <section className="leroy__wrapper">
@@ -157,14 +162,12 @@ const App = () => (
       <section className="leroy__cart">
         <section className="cart">
           <section className="cart__title">
-            <h2>Meus produtos</h2>
+            <span id="closeCart">X</span>
+            <h2>Produtos no carrinho</h2>
           </section>
           <section className="cart__shipping cart__shipping--zip">
-            <h3>Calcular frete:</h3>
-            <div className="shipping-group">
-              <input type="text" name="shipping" id="shipping"/>
-              <button>Ok</button>
-            </div>
+            <input type="text" name="shipping" id="shipping" placeholder="Calcular CEP" />
+            <img src={search} alt="Calcular frete"/>
           </section>
           <section className="cart__wrapper">
             <section className="cart__product">
@@ -173,15 +176,20 @@ const App = () => (
               </figure>
               <div className="cart__controls">
                 <p className="cart__name">Parafusadeira/Furadeira 3/8" 8V LD008-BR Bivolt Black</p>
+                <span className="cart__code">Cód.: 89031824</span>
                 <div className="cart__quantity">
                   <button className="decrease">-</button>
                   <input type="text" className="qty"/>
                   <button className="increase">+</button>
                 </div>
-                <p className="cart__price">R$ 101,00</p>
+                <p className="cart__price">
+                  <p><span>1 un.</span>R$ 119,90</p>
+                  <p><span>1 un.</span>R$ 119,90</p>
+                  <p><span>1 un.</span>R$ 119,90</p>
+                </p>
               </div>
             </section>
-            <section className="cart__product">
+            <section className="cart__product promo">
               <figure className="cart__image">
                 <img src={product} alt="Nome do produto"/>
               </figure>
@@ -192,35 +200,11 @@ const App = () => (
                   <input type="text" className="qty"/>
                   <button className="increase">+</button>
                 </div>
-                <p className="cart__price">R$ 101,00</p>
-              </div>
-            </section>
-            <section className="cart__product">
-              <figure className="cart__image">
-                <img src={product} alt="Nome do produto"/>
-              </figure>
-              <div className="cart__controls">
-                <p className="cart__name">Parafusadeira/Furadeira 3/8" 8V LD008-BR Bivolt Black</p>
-                <div className="cart__quantity">
-                  <button className="decrease">-</button>
-                  <input type="text" className="qty"/>
-                  <button className="increase">+</button>
-                </div>
-                <p className="cart__price">R$ 101,00</p>
-              </div>
-            </section>
-            <section className="cart__product">
-              <figure className="cart__image">
-                <img src={product} alt="Nome do produto"/>
-              </figure>
-              <div className="cart__controls">
-                <p className="cart__name">Parafusadeira/Furadeira 3/8" 8V LD008-BR Bivolt Black</p>
-                <div className="cart__quantity">
-                  <button className="decrease">-</button>
-                  <input type="text" className="qty"/>
-                  <button className="increase">+</button>
-                </div>
-                <p className="cart__price">R$ 101,00</p>
+                <p className="cart__price">
+                  <p><span>1 un.</span>R$ 69,90</p>
+                  <p><span>1 un.</span>R$ 599,90</p>
+                  <p><span>1 un.</span>R$ 599,90</p>
+                </p>
               </div>
             </section>
           </section>
@@ -232,7 +216,7 @@ const App = () => (
             <h3>Subtotal:</h3>
             <p>R$ 1275,90</p>
           </section>
-          <button className="cart__buy">Comprar</button>
+          <button className="cart__buy">Ir para o carrinho</button>
         </section>
       </section>
     </main>
