@@ -60,7 +60,8 @@
   },
   "dependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "redux-thunk": "^2.3.0"
   },
   "husky": {
     "hooks": {

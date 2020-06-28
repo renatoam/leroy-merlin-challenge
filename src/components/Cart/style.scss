@@ -1,0 +1,236 @@
+@import '../../styles/variables';
+
+.cart {
+  width: 100%;
+  margin-top: 40px;
+  padding: 10px;
+
+  @media screen and (min-width: 55rem) {
+    max-width: 400px;
+    height: 100%;
+    margin: 0;
+    margin-left: auto;
+    background-color: $white;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    span {
+      margin-right: 20px;
+      padding: 10px;
+      color: $green;
+      font-size: 2.143rem;
+      cursor: pointer;
+    }
+
+    h2 {
+      color: $darkgrey;
+      font-weight: bold;
+      font-size: 1.429rem;
+    }
+  }
+
+  &__shipping {
+    input#shipping {
+      width: 335px;
+      height: 39px;
+      margin: 20px auto;
+      padding: 10px 15px;
+      color: $darkgrey;
+      font-size: 1rem;
+      border: 1px solid $lightgrey;
+      border-radius: 30px;
+      -webkit-appearance: none;
+
+      &::placeholder {
+        color: $textgrey;
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: 0 0 4px 0 $green;
+      }
+    }
+
+    &--zip {
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        height: 20px;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__product {
+    display: flex;
+    padding: 20px 0 24.5px;
+    border-top: 1px solid $lightgrey;
+
+    &.promo {
+      .cart__price {
+        p:first-child {
+          display: block;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+
+  &__image {
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border: 1px solid $lightgrey;
+    border-radius: 10px;
+  }
+
+  &__name {
+    color: $green;
+    line-height: 1.214rem;
+  }
+
+  &__code {
+    display: block;
+    margin: 5px 0;
+    color: $textgrey;
+    font-size: 0.857rem;
+  }
+
+  &__quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 118px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid $lightgrey;
+    border-radius: 30px;
+
+    > * {
+      flex-grow: 1;
+    }
+
+    .qty {
+      display: block;
+      max-width: 25px;
+      text-align: center;
+      border: none;
+      -webkit-appearance: none;
+    }
+
+    .decrease, .increase {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      max-width: 20px;
+      height: 20px;
+      overflow: hidden;
+      color: $green;
+      background-color: transparent;
+      border: 1px solid $green;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+    }
+    
+    .decrease {
+      padding-bottom: 5px;
+      font-size: 2.857rem;
+    }
+    
+    .increase {
+      font-size: 2.143rem;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__price {
+    p {
+      color: $textgrey;
+      font-size: 0.857rem;
+      text-align: right;
+
+      &:first-child {
+        display: none;
+      }
+
+      &:last-child {
+        color: $darkgrey;
+        font-weight: bold;
+        font-size: 1.143rem;
+      }
+    }
+
+    span {
+      display: inline-block;
+      margin-right: 3px;
+    }
+  }
+
+  &__subtotal,
+  &__shipping {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__shipping {
+    padding: 30px 10px;
+    border-top: 1px dashed $bordergrey;
+
+    > * {
+      color: $darkgrey;
+      font-size: 1.286rem;
+    }
+  }
+
+  &__subtotal {
+    padding: 0 10px;
+
+    > * {
+      font-weight: bold;
+      font-size: 1.286rem;
+    }
+  }
+
+  &__buy {
+    width: 335px;
+    height: 40px;
+    margin: 30px 10px;
+    color: $white;
+    font-size: 1rem;
+    line-height: 1.214rem;
+    text-align: center;
+    background-color: $green;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: darken($color: $green, $amount: 5);
+    }
+  }
+}
