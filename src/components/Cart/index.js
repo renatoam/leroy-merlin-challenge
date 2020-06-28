@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 
-import productImage from './images/product-placeholder.png'
-import search from './images/search.svg'
+import productImage from '../../images/product-placeholder.png'
+import search from '../../images/search.svg'
+import './style.scss'
 
 export default function Cart () {
   return (

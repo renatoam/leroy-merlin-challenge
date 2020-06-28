@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import productImage from './images/product-placeholder.png'
+
+import productImage from '../../images/product-placeholder.png'
+import './style.scss'
 
 export default function Product () {
   return (
