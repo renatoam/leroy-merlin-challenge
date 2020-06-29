@@ -27,9 +27,15 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    display: none;
     width: 100vw;
     height: 100vh;
     background-color: $white;
+
+    &.open {
+      z-index: 2;
+      display: block;
+    }
 
     @media screen and (min-width: 55rem) {
       background-color: rgba(0, 0, 0, 0.5);

@@ -6,10 +6,11 @@
   padding: 10px;
 
   @media screen and (min-width: 55rem) {
-    max-width: 400px;
+    max-width: 420px;
     height: 100%;
     margin: 0;
     margin-left: auto;
+    padding-right: 40px;
     background-color: $white;
   }
 

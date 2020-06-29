@@ -38,10 +38,16 @@
     padding: 0;
     overflow: hidden;
     background-color: $darkgreen;
+    opacity: 0;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.4s;
+    transition-property: opacity;
+    will-change: opacity;
     
     &.open {
       max-height: 45px;
       padding: 10px;
+      opacity: 1;
     }
 
     p {

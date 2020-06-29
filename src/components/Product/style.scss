@@ -11,6 +11,7 @@
   border-bottom: 5px solid $green;
 
   &.promo {
+    padding-bottom: 0 !important;
     border-bottom: none;
 
     .product__price {
@@ -46,7 +47,6 @@
     position: absolute;
     top: 5px;
     right: 0;
-    width: 109px;
     height: 25px;
     padding: 4px 10px;
     color: $white;
@@ -75,16 +75,26 @@
   }
   
   &__name {
+    position: relative;
+    max-height: calc(1.5rem * 3);
     padding: 13px 10px;
+    overflow: hidden;
     color: $darkgrey;
-    line-height: 1.214rem;
+    line-height: 1.214rem;    
+    
+    @supports (display: -webkit-box) {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
   }
+
   
   &__button {
     display: block;
     width: 162px;
     height: 35px;
-    margin: 11px auto 15px;
+    margin: 23px auto 15px;
     color: $white;
     background-color: $green;
     -webkit-border-radius: 17.5px;
@@ -106,9 +116,13 @@
   &__price {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     height: 66px;
     padding: 10px;
+
+    .unit {
+      margin-left: 5px;
+    }
   }
 
   &__current {
