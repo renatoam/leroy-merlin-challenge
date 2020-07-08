@@ -5,7 +5,7 @@ export const Types = {
 
 const INITIAL_STATE = { open: false }
 
-export default function message (state = INITIAL_STATE, action) {
+export default function message(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.OPEN:
       return { open: true }

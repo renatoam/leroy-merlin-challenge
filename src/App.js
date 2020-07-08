@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropType from 'prop-types'
+import { bindActionCreators } from 'redux'
 
 import Header from './components/Header'
 import Product from './components/Product'
 import Cart from './components/Cart'
 
-const App = ({ cart, miniCart }) => {
-  const [products, setProducts] = useState([])
+import { Creators as actions } from './redux/ducks/product'
+
+const App = ({ cart, products, miniCart, requestProducts }) => {
   const [loading, setLoading] = useState(false)
-  const fetchURL = 'https://zs5utiv3ul.execute-api.us-east-1.amazonaws.com/dev/products'
 
   useEffect(() => {
-    async function fnGetProductList () {
-      setLoading(true)
-      try {
-        // eslint-disable-next-line no-undef
-        const response = await fetch(fetchURL).then(response => response.json()).then(json => {
-          setLoading(false)
-          return json
-        })
-        setProducts(response)
-      } catch (error) {
-        throw new Error('Algo deu errado no carregamento dos produtos!')
-      }
+    try {
+      requestProducts()
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      throw new Error('Algo deu errado no carregamento dos produtos!')
     }
-
-    fnGetProductList()
   }, [])
+
+  console.log('products', products)
 
   return (
     <main className="leroy">
@@ -44,9 +39,12 @@ const App = ({ cart, miniCart }) => {
 
 App.propTypes = {
   cart: PropType.array,
-  miniCart: PropType.object
+  miniCart: PropType.object,
+  requestProducts: PropType.func,
+  products: PropType.array
 }
 
-const mapStateToProps = state => ({ cart: state.cart, miniCart: state.miniCart })
+const mapStateToProps = state => ({ cart: state.cart, miniCart: state.miniCart, products: state.products.data })
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

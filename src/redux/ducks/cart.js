@@ -5,7 +5,7 @@ export const Types = {
 
 const INITIAL_STATE = []
 
-export default function cart (state = INITIAL_STATE, action) {
+export default function cart(state = INITIAL_STATE, action) {
   const index = state.findIndex(product => product.id === action.id)
   const filtered = state.filter((product, idx) => idx !== index)
   switch (action.type) {

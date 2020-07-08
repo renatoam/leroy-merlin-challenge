@@ -9,7 +9,7 @@ import { Creators as messageActions } from '../../redux/ducks/message'
 import logo from '../../images/logo.svg'
 import './style.scss'
 
-function Header ({ cart, message, openCart, closeMessage }) {
+function Header({ cart, message, openCart, closeMessage }) {
   return (
     <>
     <header className="header">

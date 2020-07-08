@@ -8,8 +8,8 @@ import { Creators as cartActions } from '../../redux/ducks/cart'
 import { Creators as messageActions } from '../../redux/ducks/message'
 import './style.scss'
 
-function Product ({ products, addToCart, openMessage, closeMessage }) {
-  function fnHandleAddToCart (product) {
+function Product({ products, addToCart, openMessage, closeMessage }) {
+  function fnHandleAddToCart(product) {
     addToCart(product)
     openMessage()
 

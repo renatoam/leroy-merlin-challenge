@@ -10,10 +10,8 @@ const INITIAL_STATE = {
   error: false
 }
 
-export default function products (state = INITIAL_STATE, action) {
+export default function products(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.REQUEST_PRODUCTS:
-      return { ...state, loading: true }
     case Types.RECEIVE_PRODUCTS:
       return { data: action.products, loading: false, error: false }
     case Types.FAILURE_PRODUCTS:
