@@ -10,5 +10,12 @@
   ],
   "env": {
     "jest/globals": true
+  },
+  "rules": {
+    "generator-star-spacing": ["error", {
+      "before": false,
+      "after": true
+    }],
+    "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}]
   }
 }

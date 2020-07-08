@@ -11,13 +11,13 @@ import { Creators as cartActions } from '../../redux/ducks/cart'
 
 import { fetchFreight } from '../../api'
 
-function Cart ({ cart, addToCart, removeFromCart, closeCart }) {
+function Cart({ cart, addToCart, removeFromCart, closeCart }) {
   const [zip, setZip] = useState(0)
   const [freight, setFreight] = useState(0)
   const [subtotal, setSubtotal] = useState(0)
   const products = [...new Set(cart)]
 
-  async function fnGetFreightValue (cep) {
+  async function fnGetFreightValue(cep) {
     const response = await fetchFreight(cep)
     const freight = response.freight
     const formattedFreight = `R$ ${freight.replace('.', ',')}`
@@ -25,15 +25,15 @@ function Cart ({ cart, addToCart, removeFromCart, closeCart }) {
     fnCalculateSubtotal(freight)
   }
 
-  function fnHandleFreightValue () {
+  function fnHandleFreightValue() {
     fnGetFreightValue(zip)
   }
 
-  function fnHandleZipValue (value) {
+  function fnHandleZipValue(value) {
     setZip(value)
   }
 
-  function fnCalculateItemsQty (product) {
+  function fnCalculateItemsQty(product) {
     const result = ((Number(product.price.to.integers.replace('.', '')) +
     (Number(product.price.to.decimals) / 100)) *
     cart.filter(prod => prod.id === product.id).length).toFixed(2)
@@ -41,7 +41,7 @@ function Cart ({ cart, addToCart, removeFromCart, closeCart }) {
     return `R$ ${value}`
   }
 
-  function fnCalculateSubtotal (freight) {
+  function fnCalculateSubtotal(freight) {
     const values = cart.map(product => (Number(product.price.to.integers.replace('.', '')) +
     (Number(product.price.to.decimals) / 100)).toFixed(2))
 
