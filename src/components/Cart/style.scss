@@ -6,12 +6,26 @@
   padding: 10px;
 
   @media screen and (min-width: 55rem) {
-    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    max-width: 470px;
     height: 100%;
     margin: 0;
     margin-left: auto;
     padding-right: 40px;
     background-color: $white;
+  }
+
+  &__wrapper {
+    @media screen and (min-width: 55rem) {
+      max-height: 50vh;
+      overflow: auto;
+
+      ::-webkit-scrollbar-thumb {
+        background: $green;
+      }
+    }
   }
 
   &__title {
@@ -36,7 +50,7 @@
 
   &__shipping {
     input#shipping {
-      width: 335px;
+      width: 100%;
       height: 39px;
       margin: 20px auto;
       padding: 10px 15px;
@@ -95,11 +109,13 @@
     min-width: 100px;
     height: 100px;
     margin-right: 20px;
+    overflow: hidden;
     border: 1px solid $lightgrey;
     border-radius: 10px;
   }
 
   &__name {
+    width: 100%;
     color: $green;
     line-height: 1.214rem;
   }
@@ -163,11 +179,17 @@
 
   &__controls {
     display: flex;
+    flex-grow: 1;
     flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: space-between;
   }
 
   &__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
     p {
       color: $textgrey;
       font-size: 0.857rem;
@@ -216,9 +238,9 @@
   }
 
   &__buy {
-    width: 335px;
+    width: 100%;
     height: 40px;
-    margin: 30px 10px;
+    margin: 30px 0;
     color: $white;
     font-size: 1rem;
     line-height: 1.214rem;
