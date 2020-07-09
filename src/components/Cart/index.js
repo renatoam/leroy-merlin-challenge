@@ -17,55 +17,83 @@ function Cart({ cart, addToCart, removeFromCart, closeCart }) {
   const [subtotal, setSubtotal] = useState(0)
   const products = [...new Set(cart)]
 
-  async function fnGetFreightValue(cep) {
-    const response = await fetchFreight(cep)
-    const freight = response.freight
-    const formattedFreight = `R$ ${freight.replace('.', ',')}`
-    setFreight(formattedFreight)
-    fnCalculateSubtotal(freight)
+  function fnGetFreightValue() {
+    fetchFreight(zip).then(response => {
+      const freight = Number(response.freight)
+      setFreight(freight)
+      fnCalculateSubtotal()
+    })
   }
 
-  function fnHandleFreightValue() {
-    fnGetFreightValue(zip)
+  function fnFormatToMoney(value) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
   }
 
-  function fnHandleZipValue(value) {
-    setZip(value)
+  function fnJoinPrice(product, src = 'to') {
+    return product.price[src]
+  }
+
+  function fnGetPrice(product, src = 'to') {
+    const value = fnJoinPrice(product)
+    const priceInteger = Number(value.integers.replace('.', ''))
+    const priceDecimal = (Number(value.decimals) / 100)
+    const price = priceInteger + priceDecimal
+    return price
   }
 
   function fnCalculateItemsQty(product) {
-    const result = ((Number(product.price.to.integers.replace('.', '')) +
-    (Number(product.price.to.decimals) / 100)) *
-    cart.filter(prod => prod.id === product.id).length).toFixed(2)
-    const value = result.toString().replace('.', ',')
-    return `R$ ${value}`
+    const price = fnGetPrice(product)
+    const qtyProduct = cart.filter(prod => prod.id === product.id).length
+    const result = price * qtyProduct
+    return fnFormatToMoney(result)
   }
 
-  function fnCalculateSubtotal(freight) {
-    const values = cart.map(product => (Number(product.price.to.integers.replace('.', '')) +
-    (Number(product.price.to.decimals) / 100)).toFixed(2))
-
+  function fnCalculateSubtotal() {
+    const values = cart.map(product => fnGetPrice(product).toFixed(2))
     const subtotal = values.reduce((subtotal, current) => Number(current) + Number(subtotal), 0)
-    const total = subtotal + Number(freight.toString().replace('R$ ', '').replace(',', '.'))
-    const formattedTotal = `R$ ${total.toFixed(2).replace('.', ',')}`
-
+    const total = subtotal + freight
+    const formattedTotal = fnFormatToMoney(total)
     setSubtotal(formattedTotal)
+  }
+
+  function fnHandleAddToCart(product) {
+    const qtyOfItemsInCart = cart.filter(prod => prod.id === product.id).length
+
+    if (qtyOfItemsInCart >= 10) {
+      window.alert('Máximo permitido de 10 itens por produto!')
+      return
+    }
+
+    addToCart(product)
+  }
+
+  function fnHandleRemoveFromCart(product) {
+    const qtyOfItemsInCart = cart.filter(prod => prod.id === product.id).length
+
+    if (qtyOfItemsInCart === 0) return
+
+    removeFromCart(product.id)
+  }
+
+  function fnHandleCloseCart() {
+    closeCart()
+    document.body.classList.remove('noscroll')
   }
 
   useEffect(() => {
     fnCalculateSubtotal(freight)
-  }, [cart])
+  }, [cart, freight])
 
   return (
     <>
     <section className="cart">
       <section className="cart__title">
-        <span id="closeCart" onClick={() => closeCart()}>X</span>
+        <span id="closeCart" onClick={() => fnHandleCloseCart()}>X</span>
         <h2>Produtos no carrinho</h2>
       </section>
       <section className="cart__shipping cart__shipping--zip">
-        <input type="text" name="shipping" id="shipping" placeholder="Calcular CEP" onChange={event => fnHandleZipValue(event.target.value)} />
-        <img src={search} alt="Calcular frete" onClick={() => fnHandleFreightValue()} />
+        <input type="text" name="shipping" id="shipping" placeholder="Calcular CEP" onChange={event => setZip(event.target.value)} />
+        <img src={search} alt="Calcular frete" onClick={() => fnGetFreightValue()} />
       </section>
       <section className="cart__wrapper">
         {products.length > 0 ? products.map(product => (
@@ -78,22 +106,22 @@ function Cart({ cart, addToCart, removeFromCart, closeCart }) {
               <div className="cart__group">
                 <span className="cart__code">Cód.: {product.id}</span>
                 <div className="cart__quantity">
-                  <button className="decrease" onClick={() => removeFromCart(product.id)}>-</button>
+                  <button className="decrease" onClick={() => fnHandleRemoveFromCart(product)}>-</button>
                   <input type="text" className="qty" readOnly value={cart.filter(prod => prod.id === product.id).length} />
-                  <button className="increase" onClick={() => addToCart(product)}>+</button>
+                  <button className="increase" onClick={() => fnHandleAddToCart(product)}>+</button>
                 </div>
               </div>
               <div className="cart__price">
                 <p>
-                  <span>1 un.</span>
-                  {product.price.from && `R$ ${product.price.from.integers},${product.price.from.decimals}`}
+                  {/* <span>1 un.</span> */}
+                  {product.price.from && fnFormatToMoney(fnGetPrice(product, 'from'))}
                 </p>
                 <p>
-                  <span>1 un.</span>
-                  {`R$ ${product.price.to.integers},${product.price.to.decimals}`}
+                  {/* <span>1 un.</span> */}
+                  {fnFormatToMoney(fnGetPrice(product, 'from'))}
                 </p>
                 <p>
-                  <span>{cart.filter(prod => prod.id === product.id).length} un.</span>
+                  {/* <span>{cart.filter(prod => prod.id === product.id).length} un.</span> */}
                   {fnCalculateItemsQty(product)}
                 </p>
               </div>
@@ -104,7 +132,7 @@ function Cart({ cart, addToCart, removeFromCart, closeCart }) {
       </section>
       <section className="cart__shipping cart__shipping--value">
         <h3>Frete:</h3>
-        <p>{freight}</p>
+        <p>{`R$ ${freight}`}</p>
       </section>
       <section className="cart__subtotal">
         <h3>Subtotal:</h3>
