@@ -1,17 +1,17 @@
+# Projeto Refactoring
+O projeto Refactoring consiste em passar por todos os meus repositórios antigos e refatorar o código existente e finalizar os projetos inacabados.
+
+A ideia também é manter a versão antiga em outra branch, assim posso fazer comparações entre eles.
+
+## 3. Leroy Merlin
+Este teste foi proposto num processo seletivo pra Leroy Merlin. Eu não lembro se cheguei a terminar, mas lembro que recebi alguns feedbacks sobre a execução do projeto dos quais eu discordei da maioria, até porque havia muitas inconsistências nas especificações, mas foi legal pelo desafio em si.
+
 <div align="center">
     <a href="https://www.leroymerlin.com.br" title="Leroy Merlin">
         <img width=100 src="https://cdn.leroymerlin.com.br/assets/images/logo-leroy-merlin.svg" alt="Leroy Merlin"/>
     </a>
     <h1 align="center">Teste Frontend - Renato Melo</h1>
 </div>
-
-## A Pessoa
-
-**Nome:** `Renato Melo`
-
-**E-mail:** `renatoalves92@gmail.com`
-
-**Usuário:** @renatoam
 
 ## O Desafio
 O desafio consiste em implementar uma listagem de produtos que permita adicionar produtos no carrinho, ver e manipular a quantidade de items no carrinho.
